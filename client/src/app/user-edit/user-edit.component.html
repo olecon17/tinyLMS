@@ -1,0 +1,17 @@
+<form #userForm="ngForm" (ngSubmit)="save(userForm.value)">
+ <h2>{{user.name ? 'Edit' : 'Add'}} User</h2>
+
+  <input type="hidden" [(ngModel)]="user.userid" name="userid" #userid>
+
+  <input placeholder="User Name" [(ngModel)]="user.name"
+             required name="name" #name>
+
+  <input  placeholder="User Type" [(ngModel)]="user.type"
+         required name="type" #type>
+
+
+    <button  type="submit" [disabled]="!userForm.form.valid">Save</button>
+    <button (click)="remove(user.userid)" *ngIf="user.userid" type="button">Delete</button>
+    <a routerLink="/user-list">Cancel</a>
+
+</form>
