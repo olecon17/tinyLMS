@@ -11,7 +11,7 @@ public class User implements Serializable {
     @Id
     @Column(name = "user_id")
     @GeneratedValue
-    private int userId;
+    private int userid;
 
     @Column(name = "name")
     private String name;
@@ -27,11 +27,11 @@ public class User implements Serializable {
 
 
     public int getUserid() {
-        return userId;
+        return userid;
     }
 
     public void setUserId(int userId) {
-        this.userId = userId;
+        this.userid = userid;
     }
 
     public String getName() {

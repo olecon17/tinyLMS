@@ -1,5 +1,9 @@
 <h2>User List</h2>
-
+<div>
 <div *ngFor="let user of users">
-  {{user.name}}
+  <a [routerLink]="['/user-edit', user.userid]">{{user.name}}</a>
 </div>
+<button [routerLink]="['/user-add']">Add</button>
+</div>
+
+
