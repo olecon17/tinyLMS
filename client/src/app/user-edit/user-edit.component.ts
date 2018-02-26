@@ -25,12 +25,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-      console.log(params);
       const id = params['id'];
       if (id) {
         this.userService.get(id).subscribe((user: any) => {
           if (user) {
-            console.log(user);
             this.user = user;
           } else {
             console.log(`User with id '${id}' not found, returning to list`);
@@ -50,7 +48,6 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   save(form: NgForm) {
-    console.log(form);
     this.userService.save(form).subscribe(result => {
       this.gotoList();
     }, error => console.error(error))

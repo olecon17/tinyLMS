@@ -1,0 +1,16 @@
+<h2>Students enrolled in {{course.courseCode}}</h2>
+<div *ngFor="let student of enrolled">
+<ul id="enrolled">
+  <li id="enrolled_{{student.userid}}">{{student.name}} <button (click)="remove({courseId: course.id, userId: student.userid})">Remove</button></li>
+</ul>
+</div>
+
+<h2>Available students</h2>
+<div *ngFor="let user of users">
+  <ul id="available">
+  <li id="{{user.userid}}">{{user.name}} <button (click)="save({courseId: course.id, userId: user.userid})">Add</button></li>
+  </ul>
+
+</div>
+
+<a routerLink="/course-list">Cancel</a>

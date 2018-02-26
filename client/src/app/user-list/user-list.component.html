@@ -3,7 +3,8 @@
 <div *ngFor="let user of users">
   <a [routerLink]="['/user-edit', user.userid]">{{user.name}}</a>
 </div>
-<button [routerLink]="['/user-add']">Add</button>
+<button [routerLink]="['/user-add']">Add User</button>
+  <button [routerLink]="['/home']">Home</button>
 </div>
 
 

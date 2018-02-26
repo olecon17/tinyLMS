@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 @Controller
@@ -18,10 +19,10 @@ public class UserCourseController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping(path = "/list")
+    @GetMapping(path = "/list/{id}")
     public @ResponseBody
-    Iterable <User> getCourseUsers(@RequestParam String courseId) {
-        Course foundCourse = courseRepository.findOne(Integer.parseInt(courseId));
+    Iterable <User> getCourseUsers( @PathVariable("id") String id) {
+        Course foundCourse = courseRepository.findOne(Integer.parseInt(id));
 
         Iterable <User> courseUsers = userRepository.findAll(foundCourse.getUsers());
 
@@ -31,13 +32,16 @@ public class UserCourseController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    User addUser(@RequestParam String courseId, @RequestParam String userId) {
-        Course foundCourse = courseRepository.findOne(Integer.parseInt(courseId));
-        User foundUser = userRepository.findOne(Integer.parseInt(userId));
+    User addUser(@RequestBody Map<String,String> json) {
+        // use map to accomodate reuqest body with two values
+
+        int userId = Integer.parseInt(json.get("userId"));
+        Course foundCourse = courseRepository.findOne(Integer.parseInt(json.get("courseId")));
+        User foundUser = userRepository.findOne(userId);
 
         ArrayList<Integer> courseUsers = foundCourse.getUsers();
 
-        if(!courseUsers.contains(foundUser)) {
+        if(!courseUsers.contains(userId)) {
             courseUsers.add(foundUser.getUserid());
         }
 
@@ -51,9 +55,10 @@ public class UserCourseController {
 
     @PostMapping(path = "/remove")
     public @ResponseBody
-    Iterable <Integer> removeUser(@RequestParam String courseId, @RequestParam String userId) {
-        Course foundCourse = courseRepository.findOne(Integer.parseInt(courseId));
-        User foundUser = userRepository.findOne(Integer.parseInt(userId));
+    Iterable <Integer> removeUser(@RequestBody Map<String, String> json) {
+
+        Course foundCourse = courseRepository.findOne(Integer.parseInt(json.get("courseId")));
+        User foundUser = userRepository.findOne(Integer.parseInt(json.get("userId")));
 
         ArrayList <Integer> courseUsers = foundCourse.getUsers();
 
@@ -62,6 +67,7 @@ public class UserCourseController {
         courseUsers.remove(index);
 
         foundCourse.setUsers(courseUsers);
+
         courseRepository.save(foundCourse);
 
         return foundCourse.getUsers();

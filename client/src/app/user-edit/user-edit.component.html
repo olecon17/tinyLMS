@@ -1,12 +1,12 @@
 <form #userForm="ngForm" (ngSubmit)="save(userForm.value)">
- <h2>{{user.name ? 'Edit' : 'Add'}} User</h2>
+ <h2>{{user.userid ? 'Edit' : 'Add'}} {{user.name}}</h2>
 
   <input type="hidden" [(ngModel)]="user.userid" name="userid" #userid>
-
-  <input placeholder="User Name" [(ngModel)]="user.name"
+<label for="name">Name:</label>
+  <input id="name" placeholder="User Name" [(ngModel)]="user.name"
              required name="name" #name>
-
-  <input  placeholder="User Type" [(ngModel)]="user.type"
+<label for="type">Type:</label>
+  <input id="type" placeholder="User Type" [(ngModel)]="user.type"
          required name="type" #type>
 
 

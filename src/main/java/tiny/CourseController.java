@@ -8,6 +8,7 @@ import java.util.Set;
 
 @Controller
 @RequestMapping(path = "/course")
+@CrossOrigin(origins = "http://localhost:4200")
 public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
@@ -18,43 +19,64 @@ public class CourseController {
         return courseRepository.findAll();
     }
 
+    @GetMapping(path = "/{id}")
+    public @ResponseBody
+    Course getOneCourse (@PathVariable int id) {
+        return courseRepository.findOne(id);
+    }
+
     @PostMapping(path = "/add")
     public @ResponseBody
-    String addCourse(@RequestParam String name) {
+    Course addCourse(@RequestParam String name, @RequestParam String courseCode) {
         Course course = new Course();
         course.setCourseName(name);
+        course.setCourseCode(courseCode);
 
 
         courseRepository.save(course);
 
-        return "Course created";
+        return course;
     }
+
 
 
     @PostMapping(path = "/edit")
     public @ResponseBody
-    String editCourse(@RequestParam String courseCode, @RequestParam String courseName) {
-        int courseId = Integer.parseInt(courseCode);
+    Course editCourse(@RequestBody Course request) {
+
+        int courseId;
+        courseId = request.getId();
+
+        if (courseId == 0) {
+            return addCourse(request.getCourseName(), request.getCourseCode());
+        }
+
 
         Course foundCourse = courseRepository.findOne(courseId);
 
-        if (!courseName.equals("")) {
-            foundCourse.setCourseName(courseName);
+
+        if (!request.getCourseName().equals("")) {
+            foundCourse.setCourseName(request.getCourseName());
         }
+
+        if (!request.getCourseCode().equals("")) {
+            foundCourse.setCourseCode(request.getCourseCode());
+        }
+
 
         courseRepository.save(foundCourse);
 
-        return "Course modified";
+        return foundCourse;
 
     }
 
     @PostMapping(path = "/delete")
     public @ResponseBody
-    String deleteCourse(@RequestParam String courseCode) {
-        int courseId = Integer.parseInt(courseCode);
+    int deleteCourse(@RequestBody String id) {
+        int courseId = Integer.parseInt(id);
 
         courseRepository.delete(courseId);
-        return "Course deleted";
+        return courseId;
 
     }
 

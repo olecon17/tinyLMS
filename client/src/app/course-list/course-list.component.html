@@ -1,0 +1,9 @@
+<h2>Course Listing</h2>
+<div>
+  <div *ngFor="let course of courses">
+    <a [routerLink]="['/course-edit', course.id]">{{course.courseCode}}</a>
+    {{course.courseName}}
+  </div>
+  <button [routerLink]="['/course-add']">Add Course</button>
+  <button [routerLink]="['/home']">Home</button>
+</div>

@@ -1,0 +1,22 @@
+<form #courseForm="ngForm" (ngSubmit)="save(courseForm.value)">
+  <h2>{{course.id ? 'Edit' : 'Add'}} {{course.courseName}}</h2>
+
+  <input type="hidden" [(ngModel)]="course.id" name="id" #id>
+
+  <label for="courseName">Course Name:</label>
+  <input id="courseName" placeholder="Course Name" [(ngModel)]="course.courseName"
+         required name="courseName" #courseName>
+<label for="courseCode">Course Code:</label>
+  <input id="courseCode" placeholder="Course Code" [(ngModel)]="course.courseCode"
+          required name="courseCode" #courseCode>
+
+<div>
+  <button  type="submit" [disabled]="!courseForm.form.valid">Save</button>
+  <button (click)="remove(course.id)" *ngIf="course.id" type="button">Delete</button>
+</div>
+</form>
+  <div>
+  <button [routerLink]="['/course-enroll', course.id]">Manage Enrollment</button>
+  </div>
+    <a routerLink="/course-list">Cancel</a>
+

@@ -13,9 +13,12 @@ import javax.persistence.*;
 public class Course implements Serializable {
 
     @Id
-    @Column(name = "course_code")
+    @Column(name = "courseId")
     @GeneratedValue
-    private int courseCode;
+    private int id;
+
+    @Column(name = "courseCode")
+    private String courseCode;
 
     @Column(name = "name")
     private String courseName;
@@ -27,12 +30,19 @@ public class Course implements Serializable {
         super();
     }
 
+    public int getId() {
+        return id;
+    }
 
-    public int getCourseCode() {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getCourseCode() {
         return courseCode;
     }
 
-    public void setCourseCode(int courseCode) {
+    public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
     }
 
