@@ -12,8 +12,7 @@ export class CourseEnrollService {
   }
 
   get(id: string) {
-    let data = this.http.get(this.ENROLL_API + '/list/' + id);
-    return data
+    return this.http.get(this.ENROLL_API + '/list/' + id);
   }
 
   save(enrolled: any): Observable<any> {

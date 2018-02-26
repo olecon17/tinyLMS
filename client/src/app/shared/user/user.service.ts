@@ -18,8 +18,7 @@ export class UserService {
   }
 
   getAll(): Observable<any> {
-    let data = this.http.get(this.USER_API + "/all");
-    return data;
+    return this.http.get(this.USER_API + "/all");
   }
 
   save(user: any): Observable<any> {

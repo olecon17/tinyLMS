@@ -48,7 +48,7 @@ export class CourseEnrollComponent implements OnInit {
 
       this.userService.getAll().subscribe((users: any) => {
         if (users) {
-          let finalUsers = users.filter(user => {
+          const finalUsers = users.filter(user => {
             return (this.course.users.indexOf(user.userid) == -1)
           });
 
@@ -72,7 +72,7 @@ export class CourseEnrollComponent implements OnInit {
   }
 
   reloadList() {
-    let courseId = this.course ? this.course.id : '';
+    const courseId = this.course ? this.course.id : '';
     this.router.navigate(['/course-enroll/' + courseId])
   }
 
