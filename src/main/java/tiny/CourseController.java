@@ -13,15 +13,15 @@ public class CourseController {
     @Autowired
     private CourseRepository courseRepository;
 
-    @GetMapping(path="/all")
+    @GetMapping(path = "/all")
     public @ResponseBody
-    Iterable <Course> getAllCourses() {
+    Iterable<Course> getAllCourses() {
         return courseRepository.findAll();
     }
 
     @GetMapping(path = "/{id}")
     public @ResponseBody
-    Course getOneCourse (@PathVariable int id) {
+    Course getOneCourse(@PathVariable int id) {
         return courseRepository.findOne(id);
     }
 
@@ -37,7 +37,6 @@ public class CourseController {
 
         return course;
     }
-
 
 
     @PostMapping(path = "/edit")

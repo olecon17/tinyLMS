@@ -21,10 +21,10 @@ public class UserCourseController {
 
     @GetMapping(path = "/list/{id}")
     public @ResponseBody
-    Iterable <User> getCourseUsers( @PathVariable("id") String id) {
+    Iterable<User> getCourseUsers(@PathVariable("id") String id) {
         Course foundCourse = courseRepository.findOne(Integer.parseInt(id));
 
-        Iterable <User> courseUsers = userRepository.findAll(foundCourse.getUsers());
+        Iterable<User> courseUsers = userRepository.findAll(foundCourse.getUsers());
 
         return courseUsers;
 
@@ -32,7 +32,7 @@ public class UserCourseController {
 
     @PostMapping(path = "/add")
     public @ResponseBody
-    User addUser(@RequestBody Map<String,String> json) {
+    User addUser(@RequestBody Map<String, String> json) {
         // use map to accomodate reuqest body with two values
 
         int userId = Integer.parseInt(json.get("userId"));
@@ -41,7 +41,7 @@ public class UserCourseController {
 
         ArrayList<Integer> courseUsers = foundCourse.getUsers();
 
-        if(!courseUsers.contains(userId)) {
+        if (!courseUsers.contains(userId)) {
             courseUsers.add(foundUser.getUserid());
         }
 
@@ -55,12 +55,12 @@ public class UserCourseController {
 
     @PostMapping(path = "/remove")
     public @ResponseBody
-    Iterable <Integer> removeUser(@RequestBody Map<String, String> json) {
+    Iterable<Integer> removeUser(@RequestBody Map<String, String> json) {
 
         Course foundCourse = courseRepository.findOne(Integer.parseInt(json.get("courseId")));
         User foundUser = userRepository.findOne(Integer.parseInt(json.get("userId")));
 
-        ArrayList <Integer> courseUsers = foundCourse.getUsers();
+        ArrayList<Integer> courseUsers = foundCourse.getUsers();
 
         int index = courseUsers.indexOf(foundUser.getUserid());
 

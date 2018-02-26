@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";
 
@@ -8,7 +8,8 @@ export class CourseEnrollService {
   public API = "http://localhost:8080";
   public ENROLL_API = this.API + '/usercourse';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   get(id: string) {
     let data = this.http.get(this.ENROLL_API + '/list/' + id);
