@@ -1,6 +1,7 @@
 To build this project, fist clone it to your computer and navigate to the tinyLMS directory.
 
 From tinyLMS directory in terminal:
+
 'gradle wrapper'
 
 './gradlew bootRun'
@@ -9,6 +10,7 @@ From tinyLMS directory in terminal:
 To start the front-end client:
 
 From the tinyLMS directory:
+
 'cd client'
 
 'npm start'
