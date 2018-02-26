@@ -26,7 +26,12 @@ public class UserCourseController {
     Iterable<User> getCourseUsers(@PathVariable("id") String id) {
         Course foundCourse = courseRepository.findOne(Integer.parseInt(id));
 
-        Iterable<User> courseUsers = userRepository.findAll(foundCourse.getUsers());
+        Iterable<User> courseUsers = null;
+
+        if(foundCourse.getUsers().size() > 0) {
+
+            courseUsers = userRepository.findAll(foundCourse.getUsers());
+        }
 
         return courseUsers;
 
