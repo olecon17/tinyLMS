@@ -1,14 +1,14 @@
 To build this project, fist clone it to your computer and navigate to the tinyLMS directory.
 
 From tinyLMS:
-gradle wrapper
+gradle wrapper,
 ./gradlew bootRun
 
 
 To start the front-end client:
 
 From the tinyLMS directory:
-cd client
+cd client,
 npm start 
 
 
