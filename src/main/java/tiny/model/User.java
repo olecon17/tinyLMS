@@ -1,4 +1,4 @@
-package tiny;
+package tiny.model;
 
 import javax.persistence.*;
 import java.io.Serializable;

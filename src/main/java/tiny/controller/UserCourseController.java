@@ -1,13 +1,15 @@
-package tiny;
+package tiny.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import tiny.model.Course;
+import tiny.repository.CourseRepository;
+import tiny.model.User;
+import tiny.repository.UserRepository;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
 
 @Controller
 @RequestMapping(path = "/usercourse")

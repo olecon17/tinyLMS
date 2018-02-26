@@ -1,4 +1,4 @@
-package tiny;
+package tiny.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
